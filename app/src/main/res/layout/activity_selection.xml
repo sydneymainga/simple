@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fillViewport="true"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/diego_ph"
+    android:orientation="horizontal"
+    tools:context=".Selection">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!--email field-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintVertical_bias=".5"
+        android:paddingTop="100dp"
+        android:id="@+id/constraint_layout_email"
+        >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:padding="16dp"
+            android:id="@+id/email_input_layout"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_bias=".2">
+
+            <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/email"
+                android:hint="@string/Email"
+            android:textColor="#000"
+            android:textSize="20sp"
+                android:drawableStart="@drawable/ic_email_black_24dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--password field-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/constraint_layout_password">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:padding="16dp"
+            android:id="@+id/password_input_layout"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_bias=".1">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:inputType="textPassword"
+                android:hint="@string/Password"
+                android:textSize="20sp"
+                android:drawableStart="@drawable/ic_lock_black_24dp"
+                tools:ignore="RtlCompat" />
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:paddingTop="15dp">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/login"
+                    android:layout_marginBottom="8.0dip"
+                    android:layout_marginLeft="27dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8.0dip"
+                    android:text="@string/Login"
+                    android:theme="@style/ButtonLogin"
+                    android:background="@drawable/btn_signup" />
+
+                <Button
+                    android:id="@+id/signUp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="8.0dip"
+
+                    android:layout_marginEnd="27dp"
+                    android:layout_marginRight="27dp"
+                    android:layout_marginBottom="8.0dip"
+                    android:background="@drawable/btn_signup"
+                    android:text="@string/SignUp"
+                    android:theme="@style/ButtonSignUp" />
+            </RelativeLayout>
+
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--text field-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/ForgetEmail"
+            android:textColor="#000"
+            android:hint="@string/ForgetPassword"
+            android:textSize="20sp"
+            />
+
+
+
+    </LinearLayout>
+</ScrollView>
