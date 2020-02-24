@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.sampleapp.R;
+
 public class ForgetPassword extends AppCompatActivity {
     EditText email_editText;
     Button forgetpassword;
