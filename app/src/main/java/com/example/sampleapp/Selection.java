@@ -14,10 +14,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.sampleapp.db.AppDatabase;
 import com.example.sampleapp.db.PersonInfo;
 import com.example.sampleapp.db.PersonInfoDao;
+import com.example.sampleapp.views.ViewRegisteredUsers;
 
 import java.util.List;
 import butterknife.BindViews;
@@ -26,9 +28,10 @@ import butterknife.OnClick;
 
 public class Selection extends AppCompatActivity{
 
-
-    private EditText f_name,l_name,reg_email,reg_password;
-    Button reg,signup ;
+        final private String TAG="";
+    public static AppDatabase appDatabase;
+    private EditText f_name,l_name,reg_email,reg_password,login_email,login_password;
+    Button reg,signup,login ;
 
    @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +39,11 @@ public class Selection extends AppCompatActivity{
             setContentView(R.layout.activity_selection);
 
        signup =findViewById(R.id.signUp);
+       login= findViewById(R.id.login);
+       //login fields
+       login_email = findViewById(R.id.email);
+       login_password = findViewById(R.id.password);
 
-      // final AppDatabase db = AppDatabase.getDatabase(this);
-       AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-               AppDatabase.class, "database-name").build();
 
        signup.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -48,7 +52,41 @@ public class Selection extends AppCompatActivity{
            }
        });
 
-          }
+       login.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               loginClicked();
+           }
+       });
+
+   }
+   private void loginClicked(){
+      String email =login_email.getText().toString().trim();
+      String password =login_password.getText().toString().trim();
+
+
+      AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+               AppDatabase.class, "persons").allowMainThreadQueries().build();
+
+
+      //validating user
+      //db.personInfoDao().findByEmail(email,password);
+
+       if(db.personInfoDao().findByEmail(email,password ) != null){
+
+         Toast.makeText(this,"success",Toast.LENGTH_SHORT).show();
+           Intent intent = new Intent(this, ViewRegisteredUsers.class);
+           startActivity(intent);
+
+       }else{
+
+
+           Toast.makeText(this,"failed",Toast.LENGTH_SHORT).show();
+
+       }
+
+
+   }
 
  private void regButtonClicked() {
 
@@ -74,10 +112,10 @@ public class Selection extends AppCompatActivity{
 
          //db.AppDatabase.insertAll( );
 
-         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+          appDatabase = Room.databaseBuilder(getApplicationContext(),
                  AppDatabase.class, "persons").allowMainThreadQueries().build();
 
-         PersonInfoDao personInfoDao = db.getPersonInfoDao();
+       //  PersonInfoDao personInfoDao = db.personInfoDao();
 
          PersonInfo personInfo = new PersonInfo();
          personInfo.setFname(fn);
@@ -85,7 +123,16 @@ public class Selection extends AppCompatActivity{
          personInfo.setEmail(rm);
          personInfo.setPassword(rp);
 
-         personInfoDao.insert(personInfo);
+         appDatabase.personInfoDao().insert(personInfo);
+
+
+         Toast.makeText(this,"added",Toast.LENGTH_SHORT).show();
+
+         //clear edit text
+         f_name.setText("");
+         l_name.setText("");
+         reg_email.setText("");
+         reg_password.setText("");
 
 
 
@@ -112,19 +159,19 @@ public class Selection extends AppCompatActivity{
 
             dialog.show();
 
-            reg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                  regButtonClicked();
+                    reg.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View v) {
+        regButtonClicked();
 
-                }
-            });
+        }
+        });
 
 
         }
 
 
-    }
+        }
 
 
-}
+        }

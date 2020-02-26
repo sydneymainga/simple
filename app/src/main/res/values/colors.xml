@@ -7,4 +7,11 @@
     <color name="black">#000000</color>
     <color name="yellow">#fff5f504</color>
     <color name="red">#B71C1C</color>
+    <color name="colorWhite">#fff</color>
+
+    <!-- gradient color -->
+    <color name="startColor">#006797</color>
+    <color name="endColor">#489855</color>
+    <color name="centerColor">#006797</color>
+    <color name="userRow">#403fc68b</color>
 </resources>
